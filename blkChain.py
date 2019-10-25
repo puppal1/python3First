@@ -35,15 +35,34 @@ def manipulate():
             print(blkChain)
 
 
+def verify_chain1():
+    if len(blkChain) > 0:
+        loop_idx = 0
+        for block in blkChain:
+            #print("current block  ",block ," idx value ", loop_idx, " current at loop idx ",  block[0] ,  " previous block ", blkChain[loop_idx-1])
+                if loop_idx ==0 :
+                    loop_idx +=1
+                    continue
+                elif block[0] != blkChain[loop_idx -1]:
+                    print("bad block chain at idx ", block[0] ,  blkChain[loop_idx-1])
+                    print("bad block chain at idx ", loop_idx)
+                loop_idx += 1
+                    #break
+
+
 def verify_chain():
     if len(blkChain) > 0:
         loop_idx = 0
         for block in blkChain:
-            if block[loop_idx] != block[loop_idx - 1]:
-                print("bad block chain at idx ", block[loop_idx] ,  block[loop_idx-1])
-                print("bad block chain at idx ", loop_idx)
-                loop_idx = loop_idx+1
-                #break
+            #print("current block  ",block ," idx value ", loop_idx, " current at loop idx ",  block[0] ,  " previous block ", blkChain[loop_idx-1])
+            if loop_idx ==0 :
+                loop_idx +=1
+                continue
+            elif block[0] != blkChain[loop_idx -1]:
+                return False
+            loop_idx += 1
+    return True
+            #break
 
 
 while True:
@@ -63,7 +82,7 @@ while True:
     elif user_input == 'm':
         manipulate()
     elif user_input == 'v':
-        verify_chain()
+            print(" Blkcain valid: ",verify_chain() )
 
     else:
         print('invalid input')
